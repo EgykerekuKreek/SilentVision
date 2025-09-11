@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@googleapis/gmail": "^14.0.1"
+  }
+}
