@@ -7,7 +7,6 @@
     <title>SmartGrant - AI-alapú Pályázatkezelő Platform</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style/style.css">
     <style>
         * {
             margin: 0;
@@ -112,12 +111,9 @@
         }
 
         @keyframes pulse {
-
-            0%,
-            100% {
+            0%, 100% {
                 opacity: 0.5;
             }
-
             50% {
                 opacity: 1;
             }
@@ -144,7 +140,6 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -280,36 +275,6 @@
             line-height: 1.6;
         }
 
-        /* Image Gallery */
-        .image-gallery {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin: 4rem 0;
-            flex-wrap: wrap;
-        }
-
-        .gallery-item {
-            flex: 1;
-            min-width: 300px;
-            max-width: 500px;
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05) rotate(2deg);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
         /* Contact Form */
         .contact-section {
             padding: 6rem 2rem;
@@ -325,68 +290,6 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid rgba(99, 102, 241, 0.2);
-            border-radius: 10px;
-            background: rgba(15, 23, 42, 0.5);
-            color: var(--text-light);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            background: rgba(15, 23, 42, 0.8);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .success-message {
-            display: none;
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 1rem;
-            border-radius: 10px;
-            margin-top: 1rem;
-            text-align: center;
-        }
-
-        .success-message.show {
-            display: block;
-            animation: slideDown 0.5s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         /* Footer */
         footer {
             background: var(--dark-bg);
@@ -397,6 +300,18 @@
 
         footer p {
             color: var(--text-gray);
+        }
+
+        /* Scroll Animation - FIXED */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Responsive */
@@ -421,18 +336,6 @@
             .contact-form {
                 padding: 2rem;
             }
-        }
-
-        /* Scroll Animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
@@ -469,8 +372,7 @@
             <div class="feature-card fade-in">
                 <span class="feature-icon">🤖</span>
                 <h3>AI Assistant</h3>
-                <p>Intelligens chatbot, amely segít a pályázat kitöltésében, összegzéseket generál és előzetes
-                    értékelést végez.</p>
+                <p>Intelligens chatbot, amely segít a pályázat kitöltésében, összegzéseket generál és előzetes értékelést végez.</p>
             </div>
 
             <div class="feature-card fade-in">
@@ -546,155 +448,120 @@
 
     <!-- Footer with Contact Form -->
     <footer>
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-6">
-            <h5>Kapcsolatfelvétel</h5>
-            <form id="contactForm">
-              <div class="mb-3">
-                <input type="text" name="user_name" class="form-control" placeholder="Név" required>
-              </div>
-              <div class="mb-3">
-                <input type="email" name="user_email" class="form-control" placeholder="Email cím" required>
-              </div>
-              <div class="mb-3">
-                <textarea name="message" class="form-control" rows="4" placeholder="Üzenet" required></textarea>
-              </div>
-              <div class="d-grid">
-                <button type="submit" id="submitBtn" class="btn btn-primary">Üzenet küldése</button>
-              </div>
-            </form>
-            <div id="successMessage" class="text-success" style="display:none;">Köszönjük! Üzeneted elküldtük.</div>
-            <div id="errorMessage" class="text-danger" style="display:none;"></div>
-          </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h5>Kapcsolatfelvétel</h5>
+                    <form id="contactForm">
+                        <div class="mb-3">
+                            <input type="text" name="user_name" class="form-control" placeholder="Név" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" name="user_email" class="form-control" placeholder="Email cím" required>
+                        </div>
+                        <div class="mb-3">
+                            <textarea name="message" class="form-control" rows="4" placeholder="Üzenet" required></textarea>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" id="submitBtn" class="btn btn-primary">Üzenet küldése</button>
+                        </div>
+                    </form>
+                    <div id="successMessage" class="text-success mt-3" style="display:none;">Köszönjük! Üzeneted elküldtük.</div>
+                    <div id="errorMessage" class="text-danger mt-3" style="display:none;"></div>
+                </div>
+            </div>
         </div>
-      </div>
     </footer>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
-      // EmailJS inicializálás
-      // Wait for EmailJS to load and DOM to be ready
-      document.addEventListener('DOMContentLoaded', function () {
-        // Initialize EmailJS when ready
-        if (typeof emailjs !== 'undefined') {
-          emailjs.init('LjdtIJ0PN7f8QBGll');
-          console.log('EmailJS initialized successfully');
-        } else {
-          console.error('EmailJS library not loaded');
-        }
-
-        // Contact form handling with better error handling
-        const contactForm = document.getElementById('contactForm');
-
-        if (contactForm) {
-          contactForm.addEventListener('submit', function (e) {
-            // Prevent default form submission
-            e.preventDefault();
-            e.stopPropagation();
-
-            console.log('Form submission started');
-
-            const submitBtn = document.getElementById('submitBtn');
-            const originalText = submitBtn.textContent;
-
-            // Check if EmailJS is available
-            if (typeof emailjs === 'undefined') {
-              console.error('EmailJS is not loaded');
-              showError('Hiba: EmailJS szolgáltatás nem érhető el. Kérlek próbáld újra később.');
-              return false;
+        // FIXED: Scroll animations - observe elements with 'fade-in' class
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize EmailJS
+            if (typeof emailjs !== 'undefined') {
+                emailjs.init('LjdtIJ0PN7f8QBGll');
             }
 
-            // Disable button and show loading state
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Küldés...';
-
-            // Hide previous messages
-            document.getElementById('successMessage').style.display = 'none';
-            document.getElementById('errorMessage').style.display = 'none';
-
-            // Send form with EmailJS
-            emailjs.sendForm('service_oz0zbkf', 'template_wzknssu', this)
-              .then(function (response) {
-                console.log('SUCCESS!', response.status, response.text);
-                showSuccess();
-                contactForm.reset();
-              })
-              .catch(function (error) {
-                console.log('FAILED...', error);
-                showError('Hiba történt az üzenet küldésekor. Kérlek próbáld újra később.');
-              })
-              .finally(function () {
-                // Re-enable button
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalText;
-              });
-
-            // Return false to prevent any default form behavior
-            return false;
-          });
-        }
-
-        function showSuccess() {
-          const successMsg = document.getElementById('successMessage');
-          const errorMsg = document.getElementById('errorMessage');
-
-          if (successMsg && errorMsg) {
-            successMsg.style.display = 'block';
-            errorMsg.style.display = 'none';
-
-            setTimeout(() => {
-              successMsg.style.display = 'none';
-            }, 5000);
-          }
-        }
-
-        function showError(message) {
-          const errorDiv = document.getElementById('errorMessage');
-          const successMsg = document.getElementById('successMessage');
-
-          if (errorDiv && successMsg) {
-            errorDiv.textContent = message;
-            errorDiv.style.display = 'block';
-            successMsg.style.display = 'none';
-
-            setTimeout(() => {
-              errorDiv.style.display = 'none';
-            }, 7000);
-          }
-        }
-
-        // Scroll animations
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('animated');
+            // Contact form handling
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    
+                    const submitBtn = document.getElementById('submitBtn');
+                    const originalText = submitBtn.textContent;
+                    
+                    if (typeof emailjs === 'undefined') {
+                        showError('Hiba: EmailJS szolgáltatás nem elérhető.');
+                        return false;
+                    }
+                    
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Küldés...';
+                    
+                    document.getElementById('successMessage').style.display = 'none';
+                    document.getElementById('errorMessage').style.display = 'none';
+                    
+                    emailjs.sendForm('service_oz0zbkf', 'template_wzknssu', this)
+                        .then(function () {
+                            showSuccess();
+                            contactForm.reset();
+                        })
+                        .catch(function () {
+                            showError('Hiba történt az üzenet küldésekor.');
+                        })
+                        .finally(function () {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = originalText;
+                        });
+                    
+                    return false;
+                });
             }
-          });
-        }, observerOptions);
 
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-          observer.observe(el);
+            function showSuccess() {
+                const successMsg = document.getElementById('successMessage');
+                const errorMsg = document.getElementById('errorMessage');
+                if (successMsg && errorMsg) {
+                    successMsg.style.display = 'block';
+                    errorMsg.style.display = 'none';
+                    setTimeout(() => successMsg.style.display = 'none', 5000);
+                }
+            }
+
+            function showError(message) {
+                const errorDiv = document.getElementById('errorMessage');
+                const successMsg = document.getElementById('successMessage');
+                if (errorDiv && successMsg) {
+                    errorDiv.textContent = message;
+                    errorDiv.style.display = 'block';
+                    successMsg.style.display = 'none';
+                    setTimeout(() => errorDiv.style.display = 'none', 7000);
+                }
+            }
+
+            // FIXED: Observe elements with 'fade-in' class instead of 'animate-on-scroll'
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with 'fade-in' class
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
         });
-      });
-
-      // Backup: If DOMContentLoaded already fired
-      if (document.readyState === 'loading') {
-        // DOM is still loading, event listener will work
-      } else {
-        // DOM is already loaded, execute immediately
-        if (typeof emailjs !== 'undefined') {
-          emailjs.init('LjdtIJ0PN7f8QBGll');
-        }
-      }
     </script>
-  </body>
+</body>
 
 </html>
